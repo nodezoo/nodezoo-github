@@ -14,19 +14,18 @@ var gitapi  = new GitHubAPI({
 module.exports = function github( options ){
   var seneca = this
 
-
   seneca.add(
-    'role:github,cmd:get', 
+    'role:github,cmd:get',
     {
       name:   { required$:true, string$:true },
       giturl: { string$:true }
-    }, 
+    },
     cmd_get)
 
 
   seneca.add(
-    'role:github,cmd:query', 
-    { 
+    'role:github,cmd:query',
+    {
       name: { required$:true, string$:true },
       user: { required$:true, string$:true },
       repo: { required$:true, string$:true },
@@ -35,7 +34,7 @@ module.exports = function github( options ){
 
 
   seneca.add(
-    'role:github,cmd:parse', 
+    'role:github,cmd:parse',
     {
       giturl: { required$:true, string$:true },
     },
@@ -44,28 +43,28 @@ module.exports = function github( options ){
 
 
   function cmd_get( args, done ) {
-    var seneca  = this
-    var mod_ent = seneca.make$('mod')
+    var seneca      = this
+    var github_ent  = seneca.make$('github')
 
-    var mod_name = args.name
+    var github_name = args.name
 
-    mod_ent.load$( mod_name, function(err,mod){
+    github_ent.load$( github_name, function(err,github_mod){
       if( err ) return done(err);
 
-      if( mod ) {
-        return done(null,mod);
+      if( github_mod ) {
+        return done(null,github_mod);
       }
       else if( args.giturl ) {
         seneca.act(
           'role:github,cmd:parse',
-          {name:mod_name,giturl:args.giturl},
+          {name:github_name,giturl:args.giturl},
 
           function(err,out){
             if( err ) return done(err);
 
             seneca.act(
               'role:github,cmd:query',
-              {name:mod_name,user:out.user,repo:out.repo},
+              {name:github_name,user:out.user,repo:out.repo},
               done)
           })
       }
@@ -75,12 +74,12 @@ module.exports = function github( options ){
 
 
   function cmd_query( args, done ) {
-    var seneca  = this
-    var mod_ent = seneca.make$('mod')
+    var seneca      = this
+    var github_ent  = seneca.make$('github')
 
-    var mod_name = args.name
-    var user     = args.user
-    var repo     = args.repo
+    var github_name = args.name
+    var user        = args.user
+    var repo        = args.repo
 
     gitapi.authenticate({
       type:     "basic",
@@ -107,16 +106,16 @@ module.exports = function github( options ){
             last:    repo.pushed_at
           }
 
-          mod_ent.load$(mod_name, function(err,mod){
+          github_ent.load$(github_name, function(err,github_mod){
             if( err ) return done(err);
 
-            if( mod ) {
-              return mod.data$(data).save$(done);
+            if( github_mod ) {
+              return github_mod.data$(data).save$(done);
             }
             else {
-              data.id$ = mod_name
-              mod_ent.make$(data).save$(done);
-            } 
+              data.id$ = github_name
+              github_ent.make$(data).save$(done);
+            }
           })
         }
         else return done()
@@ -135,6 +134,6 @@ module.exports = function github( options ){
     }
     else return done();
   }
-  
-  
+
+
 }

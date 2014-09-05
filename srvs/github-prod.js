@@ -22,11 +22,11 @@ var seneca = require('seneca')()
             else {
               this.act(
                 'role:npm,cmd:get',
-                {name:args.name}, 
+                {name:args.name},
 
                 function(err,mod){
                   if( err ) return;
-                  
+
                   if( mod ) {
                     this.act(
                       'role:github,cmd:get',
@@ -51,4 +51,4 @@ var seneca = require('seneca')()
 
       .client({port:9001,pin:'role:npm'})
 
-      .listen(9002)
+      .listen()
