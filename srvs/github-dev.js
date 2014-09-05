@@ -1,5 +1,5 @@
 
 var seneca = require('seneca')()
       .use('jsonfile-store')
-      .use('./github.js')
+      .use('../github.js')
       .listen()
