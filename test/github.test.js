@@ -51,7 +51,7 @@ describe('github', function() {
   it('get', function( fin ) {
     si.options({errhandler:make_errhandler(fin)})
 
-    si.make$('mod').load$('gex',function(err,out){
+    si.make$('github').load$('gex',function(err,out){
 
       if( out ) {
         out.remove$(do_get)
@@ -61,7 +61,7 @@ describe('github', function() {
       function do_get() {
         si.act(
           'role:github,cmd:get',
-          {name:'gex',giturl:'https://github.com/rjrodger/gex.git'}, 
+          {name:'gex',giturl:'https://github.com/rjrodger/gex.git'},
           function(err,out){
             assert.equal( out.id,   'gex')
             assert.equal( out.repo, 'gex')
