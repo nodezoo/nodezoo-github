@@ -1,3 +1,4 @@
+'use strict';
 
 var seneca = require('seneca')()
 
@@ -6,18 +7,17 @@ var seneca = require('seneca')()
       .use('../github.js')
 
       .add('role:info,req:part',function(args,done){
-        done()
+        done();
 
         this.act(
           'role:github,cmd:get',
           {name:args.name},
 
           function(err,mod){
-            if( err ) return;
+            if (err) return;
 
-            if( mod ) {
-              this.act('role:info,res:part,part:github',
-                       {name:args.name,data:mod.data$()})
+            if  (mod) {
+              this.act('role:info,res:part,part:github', {name:args.name,data:mod.data$()});
             }
             else {
               this.act(
@@ -45,10 +45,8 @@ var seneca = require('seneca')()
             }
           })
       })
+      .listen({host: '192.168.59.103', type:'redis',pin:'role:info,req:part'})
+      .client({host: '192.168.59.103', type:'redis',pin:'role:info,res:part'})
+      .client({host: '192.168.59.103', port:9001,pin:'role:npm'})
+      .listen();
 
-      .listen({type:'redis',pin:'role:info,req:part'})
-      .client({type:'redis',pin:'role:info,res:part'})
-
-      .client({port:9001,pin:'role:npm'})
-
-      .listen()
