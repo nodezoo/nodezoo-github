@@ -112,7 +112,7 @@ module.exports = function github( options ){
   function cmd_parse( args, done ) {
     var seneca  = this
 
-    var m = /[\/:]([^\/]+?)\/([^\/]+?)(\.git)*$/.exec(args.giturl)
+    var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
     if( m ) {
       return done( null, { user:m[1], repo:m[2] })
     }
