@@ -1,13 +1,14 @@
 
 var HOST = process.env.HOST || 'localhost'
 var REDIS = process.env.REDIS || 'localhost'
+var TOKEN = process.env.TOKEN || 'NO_TOKEN'
 
 require('seneca')()
 
   .use('redis-transport')
   .use('level-store')
 
-  .use('../github.js')
+  .use('../github.js',{token:TOKEN})
 
   .add('role:info,req:part',function(args,done){
     done()
