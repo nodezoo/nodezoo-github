@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Richard Rodger, MIT License */
+/* Copyright (c) 2014-2015 Richard Rodger, MIT License */
 /* jshint node:true, asi:true, eqnull:true */
 "use strict";
 
@@ -14,33 +14,15 @@ var gitapi  = new GitHubAPI({
 module.exports = function github( options ){
   var seneca = this
 
-  console.log(options)
-
-  seneca.add(
-    'role:github,cmd:get',
-    {
-      name:   { required$:true, string$:true },
-      giturl: { string$:true }
-    },
-    cmd_get)
+  options = seneca.util.deepextend({
+    token: 'GITHUB_TOKEN'
+  },options)
 
 
-  seneca.add(
-    'role:github,cmd:query',
-    {
-      name: { required$:true, string$:true },
-      user: { required$:true, string$:true },
-      repo: { required$:true, string$:true },
-    },
-    cmd_query)
 
-
-  seneca.add(
-    'role:github,cmd:parse',
-    {
-      giturl: { required$:true, string$:true },
-    },
-    cmd_parse)
+  seneca.add( 'role:github,cmd:get', cmd_get )
+  seneca.add( 'role:github,cmd:query', cmd_query )
+  seneca.add( 'role:github,cmd:parse', cmd_parse )
 
 
 
