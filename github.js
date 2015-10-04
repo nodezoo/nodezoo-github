@@ -14,6 +14,8 @@ var gitapi  = new GitHubAPI({
 module.exports = function github( options ){
   var seneca = this
 
+  console.log(options)
+
   seneca.add(
     'role:github,cmd:get',
     {
