@@ -1,6 +1,6 @@
 {
   "name": "nodezoo-github",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "nodezoo.com micro-service handling github meta data",
   "main": "github.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "github": "^0.2.2",
-    "seneca": "^0.7.0",
+    "seneca": "^0.7.1",
     "seneca-redis-transport": "^0.3.0",
     "seneca-level-store": "^0.2.3"
   }
