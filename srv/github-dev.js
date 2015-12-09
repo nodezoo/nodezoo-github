@@ -1,6 +1,5 @@
 
 var HOST = process.env.HOST || 'localhost'
-var REDIS = process.env.REDIS || 'localhost'
 var TOKEN = process.env.TOKEN || 'NO_TOKEN'
 
 require('seneca')()
@@ -48,11 +47,6 @@ require('seneca')()
       })
   })
 
+  .use( 'mesh', {auto:true, pins:['role:info,req:part','role:github']} )
 
-  .listen({ host:REDIS, type:'redis', pin:'role:info,req:part' })
-  .client({ host:REDIS, type:'redis', pin:'role:info,res:part' })
-
-  .client({ host:HOST, port:44003, pin:'role:npm' })
-
-  .listen(44004)
-  .repl(43004)
+  .repl(33004)
