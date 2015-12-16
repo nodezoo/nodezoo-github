@@ -47,6 +47,7 @@ require('seneca')()
       })
   })
 
-  .use( 'mesh', {auto:true, pins:['role:info,req:part','role:github']} )
+  .use( 'mesh', 
+        {auto:true, pins:['role:github','role:info,req:part'], model:'publish'} )
 
   .repl(33004)

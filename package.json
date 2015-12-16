@@ -13,8 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "github": "^0.2.2",
-    "seneca": "^0.7.1",
     "seneca-redis-transport": "^0.3.0",
-    "seneca-level-store": "^0.2.3"
+    "seneca-level-store": "^0.2.3",
+    "seneca": "https://github.com/senecajs/seneca",
+    "seneca-msgstats": "https://github.com/rjrodger/seneca-msgstats",
+    "seneca-mesh": "https://github.com/rjrodger/seneca-mesh",
+    "seneca-balance-client": "https://github.com/rjrodger/seneca-balance-client"
   }
 }
