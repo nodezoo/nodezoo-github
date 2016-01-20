@@ -1,11 +1,13 @@
-var Lab = require('lab')
-var Code = require('code')
+'use strict'
 
-var lab = exports.lab = Lab.script()
-var describe = lab.describe
-var expect = Code.expect
+const Lab = require('lab')
+const Code = require('code')
 
-describe('Dummy Test', function (done) {
+const lab = exports.lab = Lab.script()
+const describe = lab.describe
+const expect = Code.expect
+
+describe('Dummy Test', (done) => {
   expect('this').to.only.include(['this'])
   return done
 })
