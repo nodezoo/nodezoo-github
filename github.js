@@ -1,72 +1,63 @@
 /* Copyright (c) 2014-2015 Richard Rodger, MIT License */
-/* jshint node:true, asi:true, eqnull:true */
-"use strict";
+'use strict'
 
+const GitHubAPI = require('github')
 
-var GitHubAPI = require('github')
-
-var gitapi  = new GitHubAPI({
-  version: "3.0.0"
+var gitapi = new GitHubAPI({
+  version: '3.0.0'
 })
 
-
-
-module.exports = function github( options ){
+module.exports = function github (options) {
   var seneca = this
 
   options = seneca.util.deepextend({
     token: 'YOUR_TOKEN_HERE'
-  },options)
+  }, options)
 
+  seneca.add('role:github,cmd:get', cmd_get)
+  seneca.add('role:github,cmd:query', cmd_query)
+  seneca.add('role:github,cmd:parse', cmd_parse)
 
-
-  seneca.add( 'role:github,cmd:get', cmd_get )
-  seneca.add( 'role:github,cmd:query', cmd_query )
-  seneca.add( 'role:github,cmd:parse', cmd_parse )
-
-
-
-  function cmd_get( args, done ) {
-    var seneca      = this
-    var github_ent  = seneca.make$('github')
+  function cmd_get (args, done) {
+    var seneca = this
+    var github_ent = seneca.make$('github')
 
     var github_name = args.name
 
-    github_ent.load$( github_name, function(err,github_mod){
-      if( err ) return done(err);
+    github_ent.load$(github_name, function (err, github_mod) {
+      if (err) return done(err)
 
-      if( github_mod ) {
-        return done(null,github_mod);
+      if (github_mod) {
+        return done(null, github_mod)
       }
-      else if( args.giturl ) {
+      else if (args.giturl) {
         seneca.act(
           'role:github,cmd:parse',
-          {name:github_name,giturl:args.giturl},
-
-          function(err,out){
-            if( err ) return done(err);
+          { name: github_name, giturl: args.giturl },
+          function (err, out) {
+            if (err) return done(err)
 
             seneca.act(
               'role:github,cmd:query',
-              {name:github_name,user:out.user,repo:out.repo},
+              { name: github_name, user: out.user, repo: out.repo },
               done)
           })
       }
-      else return done();
+      else return done()
     })
   }
 
 
-  function cmd_query( args, done ) {
-    var seneca      = this
-    var github_ent  = seneca.make$('github')
+  function cmd_query (args, done) {
+    var seneca = this
+    var github_ent = seneca.make$('github')
 
     var github_name = args.name
-    var user        = args.user
-    var repo        = args.repo
+    var user = args.user
+    var repo = args.repo
 
     gitapi.authenticate({
-      type:     "basic",
+      type: 'basic',
       username: options.token,
       password: 'x-oauth-basic'
     })
@@ -76,48 +67,46 @@ module.exports = function github( options ){
         user: user,
         repo: repo
       },
-      function(err,repo){
-        if( err ) return done(err);
+      function (err, repo) {
+        if (err) return done(err)
 
         var data
-        if( repo ) {
+        if (repo) {
           data = {
-            user:    args.user,
-            repo:    args.repo,
-            stars:   repo.stargazers_count,
+            user: args.user,
+            repo: args.repo,
+            stars: repo.stargazers_count,
             watches: repo.subscribers_count,
-            forks:   repo.forks_count,
-            last:    repo.pushed_at
+            forks: repo.forks_count,
+            last: repo.pushed_at
           }
 
-          github_ent.load$(github_name, function(err,github_mod){
-            if( err ) return done(err);
+          github_ent.load$(github_name, function (err, github_mod) {
+            if (err) return done(err)
 
-            if( github_mod ) {
-              return github_mod.data$(data).save$(done);
+            if (github_mod) {
+              return github_mod.data$(data).save$(done)
             }
             else {
               data.id$ = github_name
-              github_ent.make$(data).save$(done);
+              github_ent.make$(data).save$(done)
             }
           })
         }
         else return done()
-
       }
     )
   }
 
 
-  function cmd_parse( args, done ) {
-    var seneca  = this
+  function cmd_parse (args, done) {
+    // commented out unused var...
+    // var seneca = this
 
     var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
-    if( m ) {
-      return done( null, { user:m[1], repo:m[2] })
+    if (m) {
+      return done(null, { user: m[1], repo: m[2] })
     }
-    else return done();
+    else return done()
   }
-
-
 }
