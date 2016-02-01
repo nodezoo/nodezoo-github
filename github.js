@@ -2,6 +2,7 @@
 'use strict'
 
 const GitHubAPI = require('github')
+const Err = require('eraro')({ package: 'nodezoo-github' })
 
 var gitapi = new GitHubAPI({
   version: '3.0.0'
@@ -107,6 +108,6 @@ module.exports = function github (options) {
     if (m) {
       return done(null, { user: m[1], repo: m[2] })
     }
-    else return done()
+    else return done(null, { ok: false, err: Err('parsing input failed') })
   }
 }
