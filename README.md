@@ -15,6 +15,16 @@ Nodezoo.com micro-service handling github meta data. Please see the [main repo][
 $ node srvs/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-TOKEN --seneca.log.all
 ```
 
+## Messages
+
+This micro-service recognizes the following messages:
+
+  * _role:github,cmd:get_
+  * _role:github,cmd:query_
+  * _role:github,cmd:parse_ 
+
+
+
 ## Contributing
 The [NodeZoo][] org encourages open participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
 
