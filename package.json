@@ -14,7 +14,8 @@
     "Isaac Mahon (github.com/CodeWriterWriter)"
   ],
   "scripts":{
-    "start": "node ./github.js"
+    "start": "node srv/github-dev.js",
+    "start-dev": "node srv/github-dev.js"
   },
   "license": "MIT",
   "dependencies": {
