@@ -10,6 +10,9 @@
     "microservice"
   ],
   "author": "Richard Rodger (richard.rodger@nearform.com)",
+  "contributors": [
+    "Isaac Mahon (github.com/CodeWriterWriter)"
+  ],
   "license": "MIT",
   "dependencies": {
     "github": "^0.2.2",
