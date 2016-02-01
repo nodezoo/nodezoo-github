@@ -1,7 +1,5 @@
 'use strict'
 
-// HOST is commented out because it is unusued
-// const HOST = process.env.HOST || 'localhost'
 const TOKEN = process.env.TOKEN || 'NO_TOKEN'
 
 require('seneca')()

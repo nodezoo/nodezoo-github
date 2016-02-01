@@ -17,7 +17,8 @@
   ],
   "author": "Richard Rodger (richard.rodger@nearform.com)",
   "contributors": [
-    "Isaac Mahon (github.com/CodeWriterWriter)"
+    "Isaac Mahon (github.com/CodeWriterWriter)",
+    "Glen Keane (glenkeane.me)"
   ],
   "license": "MIT",
   "dependencies": {
