@@ -13,6 +13,9 @@
   "contributors": [
     "Isaac Mahon (github.com/CodeWriterWriter)"
   ],
+  "scripts":{
+    "start": "node ./github.js"
+  },
   "license": "MIT",
   "dependencies": {
     "github": "^0.2.2",
