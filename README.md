@@ -32,7 +32,12 @@ This micro-service recognizes the following messages:
   * _role:github,cmd:query_
   * _role:github,cmd:parse_
 
+## Running with Curl
 
+Any of the messages above can be run using curl in the following format
+```
+curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
+```
 
 ## Contributing
 The [NodeZoo][] org encourages open participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
