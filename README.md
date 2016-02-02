@@ -11,8 +11,9 @@ Nodezoo.com micro-service handling github meta data. Please see the [main repo][
 2. run `npm install`
 
 ## Starting
+To start simply run,
 
-```sh
+```
 $ node srv/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-TOKEN --seneca.log.all
 ```
 ### Tagging and Logs
@@ -49,14 +50,14 @@ Any of the messages above can be run using curl in the following format in the c
 ```
 curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
 ```
-
+Note: Ports are assigned automatically, please check the logs for the correct port to use.
 ## Contributing
 The [NodeZoo][] org encourages __open__ and __safe__ participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
 
 - Before contributing please review our __[Code of Conduct][CoC]__
 
 ## License
-Copyright (c) 2015, Richard Rodgers and other contributors.
+Copyright (c) 2015, Richard Rodger and other contributors.
 Licensed under [MIT][].
 
 [main repo]: https://github.com/rjrodger/nodezoo
