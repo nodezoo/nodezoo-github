@@ -12,7 +12,13 @@ Nodezoo.com micro-service handling github meta data. Please see the [main repo][
 ## Starting
 
 ```sh
-$ node srvs/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-TOKEN --seneca.log.all
+$ node srv/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-TOKEN --seneca.log.all
+```
+### Tagging and Logs
+To tag your service and set up logs simply pass the relevant switches on start,
+
+```
+node srv/github-dev.js -- --seneca.options.tag=nodezoo-github --seneca.log.all
 ```
 ## Creating a GitHub Personal Access Token
 
@@ -24,13 +30,17 @@ $ node srvs/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-T
   - Click Generate token.
   - Copy the token to your clipboard. For security reasons, after you navigate off this page, no one will be able to see the token again.
 
-## Messages
+## Inbound Messages
 
 This micro-service recognizes the following messages:
 
   * _role:github,cmd:get_
   * _role:github,cmd:query_
   * _role:github,cmd:parse_
+
+## Outbound Messages
+
+This micro-service emits no outbound messages.
 
 ## Running with Curl
 
@@ -53,4 +63,4 @@ Licensed under [MIT][].
 [Code of Conduct]: https://github.com/nearform/vidi-contrib/docs/code_of_conduct.md
 [nearForm]: http://www.nearform.com/
 [NodeZoo]: http://www.nodezoo.com/
-[CoC]: ./CODE_OF_CONDUCT.md
+[CoC]: ./CoC.md
