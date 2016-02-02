@@ -7,8 +7,8 @@ Nodezoo.com micro-service handling github meta data. Please see the [main repo][
 - __Lead:__ [Richard Rodger][Lead]
 
 ## Install
-1. clone this repo into a root _/nodezoo_ folder.
-2. run `npm install`
+1. Clone this repo into a root _/nodezoo_ folder.
+2. Run `npm install`
 
 ## Starting
 To start simply run,
