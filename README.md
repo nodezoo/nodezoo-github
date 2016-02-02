@@ -4,6 +4,7 @@
 Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
 
 - __Sponsor:__ [nearForm][]
+- __Lead:__ [Richard Rodger][Lead]
 
 ## Install
 1. clone this repo into a root _/nodezoo_ folder.
@@ -64,3 +65,4 @@ Licensed under [MIT][].
 [nearForm]: http://www.nearform.com/
 [NodeZoo]: http://www.nodezoo.com/
 [CoC]: ./CoC.md
+[Lead]: https://github.com/rjrodger
