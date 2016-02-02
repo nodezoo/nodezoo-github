@@ -40,7 +40,7 @@ curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
 ```
 
 ## Contributing
-The [NodeZoo org][] encourages __open__ and __safe__ participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
+The [NodeZoo][] org encourages __open__ and __safe__ participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
 
 - Before contributing please review our __[Code of Conduct][CoC]__
 
