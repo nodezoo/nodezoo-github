@@ -2,7 +2,7 @@
 var HOST = process.env.HOST || 'localhost'
 var TOKEN = process.env.TOKEN || 'NO_TOKEN'
 
-var seneca = require('seneca')()
+require('seneca')()
 
   .use('redis-transport')
   .use('level-store')
@@ -25,7 +25,7 @@ var seneca = require('seneca')()
             {name:args.name,data:mod.data$()})
         }
 
-        this.act( 
+        this.act(
           'role:npm,cmd:get', {name:args.name},
           function(err,mod){
             if( err ) return;
@@ -47,11 +47,7 @@ var seneca = require('seneca')()
       })
   })
 
-  .use( 'mesh', 
+  .use( 'mesh',
         {auto:true, pins:['role:github','role:info,req:part'], model:'publish'} )
 
   .repl(33004)
-
-
-
-console.log(seneca.options())
