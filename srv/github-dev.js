@@ -25,7 +25,7 @@ require('seneca')()
             {name:args.name,data:mod.data$()})
         }
 
-        this.act( 
+        this.act(
           'role:npm,cmd:get', {name:args.name},
           function(err,mod){
             if( err ) return;
@@ -47,7 +47,7 @@ require('seneca')()
       })
   })
 
-  .use( 'mesh', 
+  .use( 'mesh',
         {auto:true, pins:['role:github','role:info,req:part'], model:'publish'} )
 
   .repl(33004)
