@@ -20,6 +20,10 @@
     "Isaac Mahon (github.com/CodeWriterWriter)",
     "Glen Keane (glenkeane.me)"
   ],
+  "scripts":{
+    "start": "node srv/github-dev.js",
+    "start-dev": "node srv/github-dev.js"
+  },
   "license": "MIT",
   "dependencies": {
     "code": "^2.1.0",
