@@ -1,6 +1,6 @@
 {
   "name": "nodezoo-github",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "nodezoo.com micro-service handling github meta data",
   "main": "github.js",
   "keywords": [
@@ -13,8 +13,20 @@
   "license": "MIT",
   "dependencies": {
     "github": "^0.2.2",
-    "seneca": "^0.7.1",
     "seneca-redis-transport": "^0.3.0",
-    "seneca-level-store": "^0.2.3"
+    "seneca-level-store": "^0.2.3",
+    "seneca": "https://github.com/senecajs/seneca",
+    "seneca-msgstats": "https://github.com/rjrodger/seneca-msgstats",
+    "seneca-mesh": "https://github.com/rjrodger/seneca-mesh",
+    "seneca-balance-client": "https://github.com/rjrodger/seneca-balance-client"
+  },
+  "scripts": {
+    "lint": "lab test -dL"
+  },
+  "devDependencies": {
+    "eslint-config-seneca": "1.1.x",
+    "eslint-plugin-hapi": "4.0.x",
+    "eslint-plugin-standard": "1.3.x",
+    "lab": "8.0.x"
   }
 }
