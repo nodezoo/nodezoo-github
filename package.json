@@ -22,7 +22,7 @@
   ],
   "scripts":{
     "start": "node srv/github-dev.js",
-    "start-dev": "node srv/github-dev.js"
+    "start:dev": "node srv/github-dev.js"
   },
   "license": "MIT",
   "dependencies": {
