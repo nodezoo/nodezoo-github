@@ -1,4 +1,4 @@
-![Nodezoo](https://raw.githubusercontent.com/rjrodger/nodezoo-web/to-redux/client/assets/img/logo-nodezoo.png)
+![Nodezoo](https://github.com/nodezoo/nodezoo-org/blob/master/assets/logo-nodezoo.png)
 
 ## nodezoo-github
 Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
@@ -42,7 +42,7 @@ curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
 ## Contributing
 The [NodeZoo][] org encourages __open__ and __safe__ participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
 
-- Before contributing please review our __[Code of Conduct][CoC]__
+- Before contributing please review our __[Code of Conduct]__
 
 ## License
 Copyright (c) 2014-2016, Richard Rodger and other contributors.
@@ -50,7 +50,6 @@ Licensed under [MIT][].
 
 [main repo]: https://github.com/rjrodger/nodezoo
 [MIT]: ./LICENSE
-[Code of Conduct]: https://github.com/nearform/vidi-contrib/docs/code_of_conduct.md
+[Code of Conduct]: https://github.com/nodezoo/nodezoo-org/blob/master/CoC.md
 [nearForm]: http://www.nearform.com/
 [NodeZoo]: http://www.nodezoo.com/
-[CoC]: ./CoC.md
