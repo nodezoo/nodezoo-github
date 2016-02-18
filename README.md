@@ -1,10 +1,11 @@
 ![Nodezoo](https://github.com/nodezoo/nodezoo-org/blob/master/assets/logo-nodezoo.png)
 
 ## nodezoo-github
-Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
 
 - __Lead:__ [Richard Rodger][Lead]
 - __Sponsor:__ [nearForm][]
+
+Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
 
 ## Install
 1. clone this repo into a root _/nodezoo_ folder.
