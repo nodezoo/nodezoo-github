@@ -3,6 +3,7 @@
 ## nodezoo-github
 Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
 
+- __Lead:__ [Richard Rodger][Lead]
 - __Sponsor:__ [nearForm][]
 
 ## Install
@@ -40,9 +41,12 @@ curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
 ```
 
 ## Contributing
-The [NodeZoo][] org encourages __open__ and __safe__ participation. If you feel you can help in any way, be it with documentation, examples, extra testing, or new features please get in touch.
+The [NodeZoo org][] encourages __open__ and __safe__ participation.
 
-- Before contributing please review our __[Code of Conduct]__
+- __[Code of Conduct]__
+
+If you feel you can help in any way, be it with documentation, examples, extra testing, or new
+features please get in touch.
 
 ## License
 Copyright (c) 2014-2016, Richard Rodger and other contributors.
@@ -52,4 +56,5 @@ Licensed under [MIT][].
 [MIT]: ./LICENSE
 [Code of Conduct]: https://github.com/nodezoo/nodezoo-org/blob/master/CoC.md
 [nearForm]: http://www.nearform.com/
-[NodeZoo]: http://www.nodezoo.com/
+[NodeZoo org]: http://www.nodezoo.com/
+[Lead]: https://github.com/rjrodger
