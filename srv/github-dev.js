@@ -2,7 +2,7 @@
 
 // your github token can be stored in an env variable named token,
 // and will be picked up here
-var TOKEN = process.env.TOKEN || '08a32510e52154b411a0d157b044e9972b4e8da6'
+var TOKEN = process.env.TOKEN || ''
 
 require('seneca')()
   .use('../github.js', {token: TOKEN})

@@ -15,7 +15,7 @@ module.exports = function github( options ){
   var seneca = this
 
   options = seneca.util.deepextend({
-    token: '08a32510e52154b411a0d157b044e9972b4e8da6'
+    token: ''
   },options)
 
 
