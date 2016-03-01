@@ -3,8 +3,7 @@
   "version": "5.0.0",
   "description": "nodezoo.com micro-service handling github meta data",
   "scripts": {
-    "start": "node srv/github-dev.js",
-    "start-dev": "node srv/github-dev.js"
+    "start": "node srv/github-dev.js"
   },
   "main": "github.js",
   "keywords": [
@@ -16,7 +15,8 @@
   "author": "Richard Rodger (richard.rodger@nearform.com)",
   "contributors": [
     "Isaac Mahon (github.com/CodeWriterWriter)",
-    "Glen Keane (glenkeane.me)"
+    "Glen Keane (glenkeane.me)",
+    "Dean McDonnell (mcdonelldean.me)"
   ],
   "license": "MIT",
   "dependencies": {
@@ -31,6 +31,7 @@
     "seneca-balance-client": "0.2.0",
     "seneca-level-store": "0.2.3",
     "seneca-mesh": "0.5.0",
-    "toolbag": "0.9.0"
+    "toolbag": "0.14.0",
+    "toolbag-plugins": "0.1.0"
   }
 }
