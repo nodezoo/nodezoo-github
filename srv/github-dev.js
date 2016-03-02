@@ -1,58 +1,48 @@
+'use strict'
 
-var HOST = process.env.HOST || 'localhost'
-var REDIS = process.env.REDIS || 'localhost'
-var TOKEN = process.env.TOKEN || 'NO_TOKEN'
+// your github token can be stored in an env variable named token,
+// and will be picked up here
+var TOKEN = process.env.TOKEN || ''
 
 require('seneca')()
-
-  .use('redis-transport')
-  .use('level-store')
-
-  .use('../github.js',{token:TOKEN})
-
-  .add('role:info,req:part',function(args,done){
+  .use('../github.js', {token: TOKEN})
+  .add('role:info,req:part', function (args, done) {
     done()
 
-    this.act(
-      'role:github,cmd:get',
-      {name:args.name},
+    this.act('role:github,cmd:get', {name: args.name}, function (err, mod) {
+      if (err) {
+        this.log.error(err)
+        return
+      }
 
-      function(err,mod){
-        if( err ) return;
+      if (mod) {
+        return this.act('role:info,res:part,part:github', {name: args.name, data: mod.data$()})
+      }
 
-        if( mod ) {
-          return this.act(
-            'role:info,res:part,part:github',
-            {name:args.name,data:mod.data$()})
+      this.act('role:npm, cmd:get', {name: args.name}, function (err, mod) {
+        if (err) {
+          this.log.error(err)
+          return
         }
 
-        this.act( 
-          'role:npm,cmd:get', {name:args.name},
-          function(err,mod){
-            if( err ) return;
+        if (mod) {
+          this.act('role:github,cmd:get', {name: args.name, giturl: mod.giturl}, function (err, mod) {
+            if (err) {
+              this.log.error(err)
+              return
+            }
 
-            if( mod ) {
-              this.act(
-                'role:github,cmd:get',
-                {name:args.name,giturl:mod.giturl},
-                function( err, mod ){
-                  if( err ) return;
-
-                  if( mod ) {
-                    this.act('role:info,res:part,part:github',
-                             {name:args.name,data:mod.data$()})
-                  }
-                })
+            if (mod) {
+              this.act('role:info,res:part,part:github', {name: args.name, data: mod.data$()})
             }
           })
+        }
       })
+    })
   })
-
-
-  .listen({ host:REDIS, type:'redis', pin:'role:info,req:part' })
-  .client({ host:REDIS, type:'redis', pin:'role:info,res:part' })
-
-  .client({ host:HOST, port:44003, pin:'role:npm' })
-
-  .listen(44004)
-  .repl(43004)
+  .use('mesh', {
+    auto: true,
+    pin: ['role:github', 'role:info,req:part'],
+    model: 'publish'
+  })
+  .repl(33004)
