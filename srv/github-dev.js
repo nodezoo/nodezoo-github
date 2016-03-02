@@ -2,7 +2,7 @@
 
 // your github token can be stored in an env variable named token,
 // and will be picked up here
-var TOKEN = process.env.TOKEN || '08a32510e52154b411a0d157b044e9972b4e8da6'
+var TOKEN = process.env.TOKEN || 'd520a5c9b6bd17e6b16ac72493b34a8c0402863f'
 
 require('seneca')()
   .use('../github.js', {token: TOKEN})
@@ -24,7 +24,6 @@ require('seneca')()
           this.log.error(err)
           return
         }
-
         if (mod) {
           this.act('role:github,cmd:get', {name: args.name, giturl: mod.giturl}, function (err, mod) {
             if (err) {
