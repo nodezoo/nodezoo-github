@@ -1,13 +1,12 @@
 'use strict'
 
-const StatsCollector = require('toolbag/lib/plugins/stats_collector')
-const UdpReporter = require('toolbag/lib/plugins/udp_reporter')
+const plugins = require('toolbag-plugins')
 
-module.exports = function (defaults, callback) {
-  callback(null, {
+module.exports = (defaults, done) => {
+  done(null, {
     plugins: [
       {
-        plugin: UdpReporter,
+        plugin: plugins.UdpReporter,
         options: {
           id: 'udp reporter',
           socketType: 'udp4',
@@ -16,7 +15,7 @@ module.exports = function (defaults, callback) {
         }
       },
       {
-        plugin: StatsCollector,
+        plugin: plugins.StatsCollector,
         options: {
           enabled: true,
           period: 1000,
@@ -31,7 +30,10 @@ module.exports = function (defaults, callback) {
             requests: false,
             eventLoop: true,
             meta: {
-              tags: ['nodezoo-github']
+              tags: [
+                'git',
+                'nodezoo'
+              ]
             }
           }
         }
