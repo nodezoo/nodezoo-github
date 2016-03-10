@@ -1,6 +1,8 @@
+# nodezoo-github
 FROM node:4
 
 RUN mkdir /src
+
 ADD package.json /src/
 
 WORKDIR /src

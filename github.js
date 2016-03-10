@@ -7,7 +7,7 @@ var _ = require('lodash')
 var gitUrl
 
 var opts = {
-  token: 'e414d503a227bb1445acf5ed619ec0948260babe'
+  token: ''
 }
 
 module.exports = function (options) {
@@ -15,7 +15,7 @@ module.exports = function (options) {
   var extend = seneca.util.deepextend
   
   options = seneca.util.deepextend({
-    token: 'e414d503a227bb1445acf5ed619ec0948260babe',
+    token: '',
     registry: 'http://registry.npmjs.org/'
   },options)
   
