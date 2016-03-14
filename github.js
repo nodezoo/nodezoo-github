@@ -13,22 +13,22 @@ var opts = {
 module.exports = function (options) {
   var seneca = this
   var extend = seneca.util.deepextend
-  
+
   options = seneca.util.deepextend({
     token: '',
     registry: 'http://registry.npmjs.org/'
   },options)
-  
+
   seneca.add('role:github,cmd:get', cmd_get)
   seneca.add('role:github,cmd:query', cmd_query)
   seneca.add('role:github,cmd:parse', cmd_parse)
-  seneca.add('role:github,cmd:extract', cmd_extract)  
-  
+  seneca.add('role:github,cmd:extract', cmd_extract)
+
   function cmd_get (args, done) {
     var github_name = args.name
     var github_ent = seneca.make$('github')
-    
-    var url = options.registry + github_name 
+
+    var url = options.registry + github_name
     // check if in the cache
     github_ent.load$(github_name, function (err, github) {
       if (err){
@@ -54,12 +54,11 @@ module.exports = function (options) {
             }
             //parse username and repo from giturl
             var gitData = cmd_parse(data)
-            //format url so links work correctly
-            gitUrl = urlFormat(data.giturl)
-            
+
             if (gitData){
               var user = gitData[1]
               var repo = gitData[2]
+              gitUrl = 'http://github.com/' + user + '/' + repo
             }
             if (!user) {
               return done(err)
@@ -72,19 +71,19 @@ module.exports = function (options) {
       }
     })
   }
-  
+
   function cmd_query (args, done) {
     var github_ent = seneca.make$('github')
     var github_name = args.name
     var user = args.user
     var repo = args.repo
-    
+
     github.authenticate({
       type: 'basic',
       username: opts.token,
       password: 'x-oauth-basic'
     })
-    
+
     github.repos.get({user: user, repo: repo}, function (err,repo) {
       if (err) {
         return done(err)
@@ -106,30 +105,20 @@ module.exports = function (options) {
       else return done()
     })
   }
-  
-  function urlFormat (url){
-    if(url.indexOf('git+') >= 0){
-      url = url.slice(4)
-    }
-    else if(url.indexOf('git://') >= 0){
-      url = 'http://' + url.slice(6)
-    }
-    return url
-  }
-  
+
   function cmd_extract (args, done) {
     var data = args.data
     var dist_tags = data['dist-tags'] || {}
     var latest = ((data.versions || {})[dist_tags.latest]) || {}
     var repository = latest.repository || {}
-    
+
     var out = {
       giturl: repository.url
     }
-    
+
     done(null, out)
   }
-  
+
   function cmd_parse (args) {
     var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
     if (m) {
