@@ -7,7 +7,7 @@ var _ = require('lodash')
 var gitUrl
 
 var opts = {
-  token: ''
+  token: '1b4d1e30de8597d1b7dd70a11a12131b322deae6'
 }
 
 module.exports = function (options) {
@@ -15,7 +15,7 @@ module.exports = function (options) {
   var extend = seneca.util.deepextend
   
   options = seneca.util.deepextend({
-    token: '',
+    token: '1b4d1e30de8597d1b7dd70a11a12131b322deae6',
     registry: 'http://registry.npmjs.org/'
   },options)
   
@@ -93,6 +93,7 @@ module.exports = function (options) {
       
       if (repo) {
         data = {
+          name: args.repo,
           user: args.user,
           repo: args.repo,
           stars: repo.stargazers_count,
@@ -112,6 +113,12 @@ module.exports = function (options) {
           else {
             data.id$ = github_name
             github_ent.make$(data).save$(done)
+            /* DEAN!!!!!!!!!!!!!
+            This is where were are doing the override command but without the override
+            possible issue here with it not having the object saved before 
+            the insert is called, not sure yet.
+            */
+            seneca.act('role:search,cmd:insert',{data:data})
           } 
         })
         
