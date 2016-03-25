@@ -33,6 +33,7 @@ This micro-service recognizes the following messages:
   * _role:github,cmd:get_
   * _role:github,cmd:query_
   * _role:github,cmd:parse_
+  * _role:github,cmd:extract_
 
 ## Running with Curl
 
