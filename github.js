@@ -7,28 +7,26 @@ var _ = require('lodash')
 var gitUrl
 
 var opts = {
-  token: '1b4d1e30de8597d1b7dd70a11a12131b322deae6'
+  registry: 'http://registry.npmjs.org/',
+  token: ''
 }
 
 module.exports = function (options) {
   var seneca = this
   var extend = seneca.util.deepextend
-  
-  options = seneca.util.deepextend({
-    token: '1b4d1e30de8597d1b7dd70a11a12131b322deae6',
-    registry: 'http://registry.npmjs.org/'
-  },options)
-  
+
+  opts = extend(opts, options)
+
   seneca.add('role:github,cmd:get', cmd_get)
   seneca.add('role:github,cmd:query', cmd_query)
   seneca.add('role:github,cmd:parse', cmd_parse)
   seneca.add('role:github,cmd:extract', cmd_extract)
-  
+
   function cmd_get (args, done) {
     var github_name = args.name
     var github_ent = seneca.make$('github')
-    
-    var url = options.registry + github_name
+
+    var url = opts.registry + github_name
     // check if in the cache
     github_ent.load$(github_name, function (err, github) {
       if (err){
@@ -54,7 +52,7 @@ module.exports = function (options) {
             }
             // parse username and repo from giturl
             var gitData = cmd_parse(data)
-            
+
             if (gitData){
               var user = gitData[1]
               var repo = gitData[2]
@@ -72,25 +70,25 @@ module.exports = function (options) {
       }
     })
   }
-  
+
   function cmd_query (args, done) {
     var github_ent = seneca.make$('github')
     var github_name = args.name
     var user = args.user
     var repo = args.repo
-    
+
     github.authenticate({
       type: 'basic',
       username: opts.token,
       password: 'x-oauth-basic'
     })
-    
+
     github.repos.get({user: user, repo: repo}, function (err,repo) {
       if (err) {
         return done(err)
       }
       var data
-      
+
       if (repo) {
         data = {
           name: args.repo,
@@ -115,31 +113,31 @@ module.exports = function (options) {
             github_ent.make$(data).save$(done)
             /* DEAN!!!!!!!!!!!!!
             This is where were are doing the override command but without the override
-            possible issue here with it not having the object saved before 
+            possible issue here with it not having the object saved before
             the insert is called, not sure yet.
             */
             seneca.act('role:search,cmd:insert',{data:data})
-          } 
+          }
         })
-        
+
       }
       else return done()
     })
   }
-  
+
   function cmd_extract (args, done) {
     var data = args.data
     var dist_tags = data['dist-tags'] || {}
     var latest = ((data.versions || {})[dist_tags.latest]) || {}
     var repository = latest.repository || {}
-    
+
     var out = {
       giturl: repository.url
     }
-    
+
     done(null, out)
   }
-  
+
   function cmd_parse (args) {
     var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
     if (m) {
