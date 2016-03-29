@@ -1,12 +1,13 @@
 'use strict'
 
-const plugins = require('toolbag-plugins')
+const StatsCollector = require('toolbag-plugin-stats-collector')
+const UdpReporter = require('toolbag-plugin-udp-reporter')
 
 module.exports = (defaults, done) => {
   done(null, {
     plugins: [
       {
-        plugin: plugins.UdpReporter,
+        plugin: UdpReporter,
         options: {
           id: 'udp reporter',
           socketType: 'udp4',
@@ -15,7 +16,7 @@ module.exports = (defaults, done) => {
         }
       },
       {
-        plugin: plugins.StatsCollector,
+        plugin: StatsCollector,
         options: {
           enabled: true,
           period: 1000,
