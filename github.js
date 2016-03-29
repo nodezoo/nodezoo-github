@@ -88,7 +88,6 @@ module.exports = function (options) {
         return done(err)
       }
       var data
-      console.log(args, repo, 'args for github')
 
       if (repo) {
         data = {
