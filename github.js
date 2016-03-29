@@ -88,6 +88,7 @@ module.exports = function (options) {
         return done(err)
       }
       var data
+      console.log(args, repo, 'args for github')
 
       if (repo) {
         data = {
@@ -98,7 +99,8 @@ module.exports = function (options) {
           watches: repo.subscribers_count,
           forks: repo.forks_count,
           last: repo.pushed_at,
-          url: gitUrl
+          url: gitUrl,
+          gitClone: repo.clone_url
         }
         // update the data if module exists in cache, if not create it
         github_ent.load$(github_name, function(err,github){
