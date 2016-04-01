@@ -7,9 +7,10 @@ var TOKEN = process.env.TOKEN || ''
 
 require('seneca')()
 .use('../github.js', {token: TOKEN})
+.use('entity')
 .add('role:info,req:part', function (args, done) {
   done()
-  
+
   this.act('role:github,cmd:get', {name: args.name}, function (err, mod) {
     if (err) {
       return done(err);
@@ -21,7 +22,7 @@ require('seneca')()
 .add('role:github,info:change', function (args,done) {
   done()
   this.act('role:info,cmd:get', {name:args.name,update:true})
-})    
+})
 .use('mesh', {
   auto: true,
   pin: ['role:github', 'role:info,req:part'],
