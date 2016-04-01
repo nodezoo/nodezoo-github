@@ -20,6 +20,14 @@
     "Matthew O'Connor (github.com/matt-oc)",
     "Shane Lacey (github.com/shanel262)"
   ],
+  "homepage": "https://github.com/nodezoo/nodezoo-github#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodezoo/nodezoo-github.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodezoo/nodezoo-github/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "code": "2.1.0",
