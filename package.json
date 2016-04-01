@@ -41,6 +41,7 @@
     "request": "2.69.0",
     "seneca": "2.0.0",
     "seneca-balance-client": "0.4.0",
+    "seneca-entity": "0.0.1",
     "seneca-level-store": "0.2.3",
     "seneca-mesh": "0.7.0",
     "toolbag": "2.0.0",
