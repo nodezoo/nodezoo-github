@@ -6,8 +6,8 @@
 var TOKEN = process.env.TOKEN || ''
 
 require('seneca')()
-.use('../github.js', {token: TOKEN})
 .use('entity')
+.use('../github.js', {token: TOKEN})
 .add('role:info,req:part', function (args, done) {
   done()
 
