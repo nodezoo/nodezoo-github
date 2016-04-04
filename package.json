@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "description": "nodezoo.com micro-service handling github meta data",
   "scripts": {
-    "start": "node srv/github-dev.js"
+    "start": "node srv/start.js"
   },
   "main": "github.js",
   "keywords": [
