@@ -7,6 +7,12 @@
 
 Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
 
+If you're using this microservice, and need help, you can:
+
+- Post a [github issue][],
+- Tweet to [@nodezoo][],
+- Ask on the [Gitter][gitter-url].
+
 ## Install
 1. clone this repo into a root _/nodezoo_ folder.
 2. run `npm install`
@@ -60,3 +66,6 @@ Licensed under [MIT][].
 [nearForm]: http://www.nearform.com/
 [NodeZoo org]: http://www.nodezoo.com/
 [Lead]: https://github.com/rjrodger
+[github issue]: https://github.com/nodezoo/nodezoo-github/issues
+[@nodezoo]: http://twitter.com/nodezoo
+[gitter-url]: https://gitter.im/nodezoo/nodezoo-org
