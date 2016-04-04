@@ -31,9 +31,9 @@ link below for details on obtaining and running the complete system.
 
 ## Patterns Handled
 ### `role:github,cmd:get`
-Request module name and description
+Request module details by name
 ```js
-seneca.act('role:github, req:get', {name: 'seneca'})
+seneca.act('role:github, cmd:get', {name: 'seneca'})
 ```
 
 ## Patterns Emitted
