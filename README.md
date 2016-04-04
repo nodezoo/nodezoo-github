@@ -13,15 +13,12 @@ If you're using this microservice, and need help, you can:
 - Tweet to [@nodezoo][],
 - Ask on the [Gitter][gitter-url].
 
-## Install
-1. clone this repo into a root _/nodezoo_ folder.
-2. run `npm install`
+## Running
+This micro-service can be ran as part of the [NodeZoo org][] system. Please follow the
+link below for details on obtaining and running the complete system.
 
-## Starting
+- [Nodezoo: The complete system][System]
 
-```sh
-$ node srvs/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-TOKEN --seneca.log.all
-```
 ## Creating a GitHub Personal Access Token
 
   - In the top right corner of any page, click your profile photo, then click Settings.
@@ -69,3 +66,4 @@ Licensed under [MIT][].
 [github issue]: https://github.com/nodezoo/nodezoo-github/issues
 [@nodezoo]: http://twitter.com/nodezoo
 [gitter-url]: https://gitter.im/nodezoo/nodezoo-org
+[System]: https://github.com/nodezoo/nodezoo-system
