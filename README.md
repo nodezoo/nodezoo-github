@@ -1,4 +1,4 @@
-![Nodezoo](https://github.com/nodezoo/nodezoo-org/blob/master/assets/logo-nodezoo.png)
+![Nodezoo](https://raw.githubusercontent.com/nodezoo/nodezoo-org/master/assets/logo-nodezoo.png)
 
 ## nodezoo-github
 
@@ -7,15 +7,18 @@
 
 Nodezoo.com micro-service handling github meta data. Please see the [main repo][] for more details
 
-## Install
-1. clone this repo into a root _/nodezoo_ folder.
-2. run `npm install`
+If you're using this microservice, and need help, you can:
 
-## Starting
+- Post a [github issue][],
+- Tweet to [@nodezoo][],
+- Ask on the [Gitter][gitter-url].
 
-```sh
-$ node srvs/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-TOKEN --seneca.log.all
-```
+## Running
+This micro-service can be ran as part of the [NodeZoo org][] system. Please follow the
+link below for details on obtaining and running the complete system.
+
+- [Nodezoo: The complete system][System]
+
 ## Creating a GitHub Personal Access Token
 
   - In the top right corner of any page, click your profile photo, then click Settings.
@@ -26,21 +29,16 @@ $ node srvs/github-dev.js --seneca.options.github.token=GITHUB-PERSONAL-ACCESS-T
   - Click Generate token.
   - Copy the token to your clipboard. For security reasons, after you navigate off this page, no one will be able to see the token again.
 
-## Messages
-
-This micro-service recognizes the following messages:
-
-  * _role:github,cmd:get_
-  * _role:github,cmd:query_
-  * _role:github,cmd:parse_
-  * _role:github,cmd:extract_
-
-## Running with Curl
-
-Any of the messages above can be run using curl in the following format in the command line
+## Patterns Handled
+### `role:github,cmd:get`
+Request module details by name
+```js
+seneca.act('role:github, cmd:get', {name: 'seneca'})
 ```
-curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
-```
+
+## Patterns Emitted
+
+There are no outgoing messages.
 
 ## Contributing
 The [NodeZoo org][] encourages __open__ and __safe__ participation.
@@ -60,3 +58,7 @@ Licensed under [MIT][].
 [nearForm]: http://www.nearform.com/
 [NodeZoo org]: http://www.nodezoo.com/
 [Lead]: https://github.com/rjrodger
+[github issue]: https://github.com/nodezoo/nodezoo-github/issues
+[@nodezoo]: http://twitter.com/nodezoo
+[gitter-url]: https://gitter.im/nodezoo/nodezoo-org
+[System]: https://github.com/nodezoo/nodezoo-system
