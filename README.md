@@ -1,4 +1,4 @@
-![Nodezoo](https://github.com/nodezoo/nodezoo-org/blob/master/assets/logo-nodezoo.png)
+![Nodezoo](https://raw.githubusercontent.com/nodezoo/nodezoo-org/master/assets/logo-nodezoo.png)
 
 ## nodezoo-github
 
@@ -29,21 +29,16 @@ link below for details on obtaining and running the complete system.
   - Click Generate token.
   - Copy the token to your clipboard. For security reasons, after you navigate off this page, no one will be able to see the token again.
 
-## Messages
-
-This micro-service recognizes the following messages:
-
-  * _role:github,cmd:get_
-  * _role:github,cmd:query_
-  * _role:github,cmd:parse_
-  * _role:github,cmd:extract_
-
-## Running with Curl
-
-Any of the messages above can be run using curl in the following format in the command line
+## Patterns Handled
+### `role:github,cmd:get`
+Request module name and description
+```js
+seneca.act('role:github, req:get', {name: 'seneca'})
 ```
-curl -d '{"role":"github","cmd":"get"}' http://localhost:52472/act
-```
+
+## Patterns Emitted
+
+There are no outgoing messages.
 
 ## Contributing
 The [NodeZoo org][] encourages __open__ and __safe__ participation.
