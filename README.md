@@ -19,6 +19,9 @@ link below for details on obtaining and running the complete system.
 
 - [Nodezoo: The complete system][System]
 
+## Configuration
+Set the `$GITHUB_TOKEN` environment variable with a GitHub Access Token.
+
 ## Creating a GitHub Personal Access Token
 
   - In the top right corner of any page, click your profile photo, then click Settings.
