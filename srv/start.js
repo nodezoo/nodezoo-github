@@ -3,11 +3,11 @@
 // your github token can be stored in an env variable named token,
 // and will be picked up here
 
-var TOKEN = process.env.TOKEN || ''
+var GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
 
 require('seneca')()
 .use('entity')
-.use('../github.js', {token: TOKEN})
+.use('../github.js', {token: GITHUB_TOKEN})
 .add('role:info,req:part', function (args, done) {
   done()
 
