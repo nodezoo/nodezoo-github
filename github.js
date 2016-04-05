@@ -44,7 +44,7 @@ function cmd_get (args, done) {
     }
     else {
       // get giturl from npm
-      Request.get(url, function (err, res, body) {
+      Request.get({url: url, gzip: true}, function (err, res, body) {
         if (err) {
           return done(err)
         }
