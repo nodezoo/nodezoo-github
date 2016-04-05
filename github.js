@@ -36,7 +36,7 @@ function cmd_get (args, done) {
   var url = opts.registry + github_name
   // check if in the cache
   github_ent.load$(github_name, function (err, github) {
-    if (err){
+    if (err) {
       return done(err)
     }
     if (github && !args.update) {
@@ -60,7 +60,7 @@ function cmd_get (args, done) {
           // parse username and repo from giturl
           var gitData = cmd_parse(data)
 
-          if (gitData){
+          if (gitData) {
             var user = gitData[1]
             var repo = gitData[2]
             gitUrl = 'http://github.com/' + user + '/' + repo
@@ -92,7 +92,7 @@ function cmd_query (args, done) {
     password: 'x-oauth-basic'
   })
 
-  github.repos.get({user: user, repo: repo}, function (err,repo) {
+  github.repos.get({user: user, repo: repo}, function (err, repo) {
     if (err) {
       return done(err)
     }
@@ -111,19 +111,18 @@ function cmd_query (args, done) {
         gitClone: repo.clone_url
       }
       // update the data if module exists in cache, if not create it
-      github_ent.load$(github_name, function(err,github){
+      github_ent.load$(github_name, function (err, github) {
         if (err) {
-          return done(err);
+          return done(err)
         }
         if (github) {
-          return github.data$(data).save$(done);
+          return github.data$(data).save$(done)
         }
         else {
           data.id$ = github_name
           github_ent.make$(data).save$(done)
         }
       })
-
     }
     else return done()
   })
