@@ -97,18 +97,27 @@ function cmd_query (args, done) {
       return done(err)
     }
     var data
-
     if (repo) {
+      var pullRequests = []
+      github.pullRequests.getAll({user: user, repo: github_name, state: 'open'}, function (err, response) {
+        if (err) {
+          console.log(err)
+        }
+        if (response) {
+          pullRequests = response
+        }
+      })
       data = {
-        name: args.repo,
-        user: args.user,
-        repo: args.repo,
-        stars: repo.stargazers_count,
-        watches: repo.subscribers_count,
-        forks: repo.forks_count,
-        last: repo.pushed_at,
-        url: gitUrl,
-        gitClone: repo.clone_url
+        name: args.repo || '',
+        user: args.user || '',
+        repo: args.repo || '',
+        stars: repo.stargazers_count || '',
+        watches: repo.subscribers_count || '',
+        forks: repo.forks_count || '',
+        last: repo.pushed_at || '',
+        url: gitUrl || '',
+        gitClone: repo.clone_url || '',
+        pullRequests: pullRequests.length || ''
       }
       // update the data if module exists in cache, if not create it
       github_ent.load$(github_name, function (err, github) {
