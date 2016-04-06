@@ -3,7 +3,8 @@
   "version": "6.0.0",
   "description": "nodezoo.com micro-service handling github meta data",
   "scripts": {
-    "start": "node srv/start.js"
+    "start": "node srv/start.js",
+    "isolated": "GITHUB_ISOLATED=true node srv/start.js"
   },
   "main": "lib/github.js",
   "keywords": [
