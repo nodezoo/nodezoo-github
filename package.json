@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node srv/start.js"
   },
-  "main": "github.js",
+  "main": "lib/github.js",
   "keywords": [
     "nodezoo",
     "seneca",
