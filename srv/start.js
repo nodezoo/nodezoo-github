@@ -13,15 +13,15 @@ require('seneca')()
 
   this.act('role:github,cmd:get', {name: args.name}, function (err, mod) {
     if (err) {
-      return done(err);
+      return done(err)
     }
     this.act('role:info,res:part,part:github', {name: args.name, data: mod.data$()})
   })
 })
 
-.add('role:github,info:change', function (args,done) {
+.add('role:github,info:change', function (args, done) {
   done()
-  this.act('role:info,cmd:get', {name:args.name,update:true})
+  this.act('role:info,cmd:get', {name: args.name, update: true})
 })
 .use('mesh', {
   auto: true,
