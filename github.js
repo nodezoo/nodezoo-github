@@ -1,7 +1,7 @@
 'use strict'
 
-var GitHub = require('github')
-var github = new GitHub({version: '3.0.0'})
+var GitHub = require('github4')
+var github = new GitHub()
 var Request = require('request')
 var _ = require('lodash')
 var gitUrl

@@ -31,7 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "eraro": "0.4.1",
-    "github": "0.2.2",
+    "github4": "0.5.4",
     "lodash": "4.6.1",
     "request": "2.69.0",
     "seneca": "2.0.0",
