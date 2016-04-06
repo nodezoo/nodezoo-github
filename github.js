@@ -17,25 +17,25 @@ module.exports = function (options) {
 
   opts = extend(opts, options)
 
-  seneca.add('role:github,cmd:get', cmd_get)
-  seneca.add('role:github,cmd:query', cmd_query)
-  seneca.add('role:github,cmd:parse', cmd_parse)
-  seneca.add('role:github,cmd:extract', cmd_extract)
+  seneca.add('role:github,cmd:get', cmdGet)
+  seneca.add('role:github,cmd:query', cmdQuery)
+  seneca.add('role:github,cmd:parse', cmdParse)
+  seneca.add('role:github,cmd:extract', cmdExtract)
 
   return {
     name: 'nodezoo-github'
   }
 }
 
-function cmd_get (args, done) {
+function cmdGet (args, done) {
   var seneca = this
 
-  var github_name = args.name
-  var github_ent = seneca.make$('github')
+  var githubName = args.name
+  var githubEnt = seneca.make$('github')
 
-  var url = opts.registry + github_name
+  var url = opts.registry + githubName
   // check if in the cache
-  github_ent.load$(github_name, function (err, github) {
+  githubEnt.load$(githubName, function (err, github) {
     if (err) {
       return done(err)
     }
@@ -58,7 +58,7 @@ function cmd_get (args, done) {
             return done(err)
           }
           // parse username and repo from giturl
-          var gitData = cmd_parse(data)
+          var gitData = cmdParse(data)
 
           if (gitData) {
             var user = gitData[1]
@@ -70,7 +70,7 @@ function cmd_get (args, done) {
           }
           else {
             // get github data using github username and repo name
-            seneca.act('role:github,cmd:query', {name: github_name, user: user, repo: repo}, done)
+            seneca.act('role:github,cmd:query', {name: githubName, user: user, repo: repo}, done)
           }
         })
       })
@@ -78,11 +78,11 @@ function cmd_get (args, done) {
   })
 }
 
-function cmd_query (args, done) {
+function cmdQuery (args, done) {
   var seneca = this
 
-  var github_ent = seneca.make$('github')
-  var github_name = args.name
+  var githubEnt = seneca.make$('github')
+  var githubName = args.name
   var user = args.user
   var repo = args.repo
 
@@ -99,7 +99,7 @@ function cmd_query (args, done) {
     var data
     if (repo) {
       var pullRequests = []
-      github.pullRequests.getAll({user: user, repo: github_name, state: 'open'}, function (err, response) {
+      github.pullRequests.getAll({user: user, repo: githubName, state: 'open'}, function (err, response) {
         if (err) {
           console.log(err)
         }
@@ -120,7 +120,7 @@ function cmd_query (args, done) {
         pullRequests: pullRequests.length || ''
       }
       // update the data if module exists in cache, if not create it
-      github_ent.load$(github_name, function (err, github) {
+      githubEnt.load$(githubName, function (err, github) {
         if (err) {
           return done(err)
         }
@@ -128,8 +128,8 @@ function cmd_query (args, done) {
           return github.data$(data).save$(done)
         }
         else {
-          data.id$ = github_name
-          github_ent.make$(data).save$(done)
+          data.id$ = githubName
+          githubEnt.make$(data).save$(done)
         }
       })
     }
@@ -137,10 +137,10 @@ function cmd_query (args, done) {
   })
 }
 
-function cmd_extract (args, done) {
+function cmdExtract (args, done) {
   var data = args.data
-  var dist_tags = data['dist-tags'] || {}
-  var latest = ((data.versions || {})[dist_tags.latest]) || {}
+  var distTags = data['dist-tags'] || {}
+  var latest = ((data.versions || {})[distTags.latest]) || {}
   var repository = latest.repository || {}
 
   var out = {
@@ -150,7 +150,7 @@ function cmd_extract (args, done) {
   done(null, out)
 }
 
-function cmd_parse (args) {
+function cmdParse (args) {
   var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
   if (m) {
     return (m)
