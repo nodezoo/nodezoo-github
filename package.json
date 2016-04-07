@@ -1,7 +1,7 @@
 {
   "name": "nodezoo-github",
-  "version": "6.0.0",
-  "description": "nodezoo.com micro-service handling github meta data",
+  "version": "6.1.0",
+  "description": "A micro-service that provides Github related information to NodeZoo",
   "scripts": {
     "start": "node srv/start.js",
     "isolated": "GITHUB_ISOLATED=true node srv/start.js"
