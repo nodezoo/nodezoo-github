@@ -1,30 +1,39 @@
 'use strict'
 
-// your github token can be stored in an env variable named token,
-// and will be picked up here
+var Seneca = require('seneca')
+var Entities = require('seneca-entity')
+var Mesh = require('seneca-mesh')
+var Github = require('../lib/github')
 
-var GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
+var envs = process.env
+var opts = {
+  seneca: {
+    tag: envs.GITHUB_TAG || 'nodezoo-github'
+  },
+  github: {
+    token: envs.GITHUB_TOKEN || 'NO_TOKEN',
+    registry: envs.GITHUB_REGISTRY || 'http://registry.npmjs.org/'
+  },
+  mesh: {
+    auto: true,
+    listen: [
+      {pin: 'role:github,cmd:get', model: 'consume'},
+      {pin: 'role:info,req:part', model: 'observe'}
+    ]
+  },
+  isolated: {
+    host: envs.GITHUB_HOST || 'localhost',
+    port: envs.GITHUB_PORT || '8052'
+  }
+}
 
-require('seneca')()
-.use('entity')
-.use('../github.js', {token: GITHUB_TOKEN})
-.add('role:info,req:part', function (args, done) {
-  done()
+console.log(envs.GITHUB_TOKEN)
 
-  this.act('role:github,cmd:get', {name: args.name}, function (err, mod) {
-    if (err) {
-      return done(err)
-    }
-    this.act('role:info,res:part,part:github', {name: args.name, data: mod.data$()})
-  })
-})
+var Service =
+Seneca(opts.seneca)
+  .use(Entities)
+  .use(Github, opts.github)
 
-.add('role:github,info:change', function (args, done) {
-  done()
-  this.act('role:info,cmd:get', {name: args.name, update: true})
-})
-.use('mesh', {
-  auto: true,
-  pin: ['role:github', 'role:info,req:part'],
-  model: 'publish'
-})
+envs.GITHUB_ISOLATED
+  ? Service.listen(opts.isolated)
+  : Service.use(Mesh, opts.mesh)
