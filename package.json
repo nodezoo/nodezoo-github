@@ -13,11 +13,11 @@
     "github",
     "microservice"
   ],
-  "author": "Richard Rodger (richard.rodger@nearform.com)",
+  "author": "Richard Rodger (github.com/rjrodger)",
   "contributors": [
     "Jane Quinn (github.com/CodeWriterWriter)",
-    "Glen Keane (glenkeane.me)",
-    "Dean McDonnell (mcdonelldean.me)",
+    "Glen Keane (github.com/thekemkid)",
+    "Dean McDonnell (github.com/mcdonnelldean)",
     "Matthew O'Connor (github.com/matt-oc)",
     "Shane Lacey (github.com/shanel262)"
   ],
@@ -31,9 +31,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "eraro": "0.4.1",
     "github4": "0.5.4",
-    "lodash": "4.6.1",
     "request": "2.69.0",
     "seneca": "2.0.0",
     "seneca-balance-client": "0.4.0",

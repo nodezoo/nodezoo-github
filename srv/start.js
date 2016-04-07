@@ -11,7 +11,8 @@ var opts = {
     tag: envs.GITHUB_TAG || 'nodezoo-github'
   },
   github: {
-    token: envs.GITHUB_TOKEN || '668fd718441b4d97699763b9d97f402c8370d331'
+    token: envs.GITHUB_TOKEN || 'NO_TOKEN',
+    registry: envs.GITHUB_REGISTRY || 'http://registry.npmjs.org/'
   },
   mesh: {
     auto: true,
@@ -25,6 +26,8 @@ var opts = {
     port: envs.GITHUB_PORT || '8052'
   }
 }
+
+console.log(envs.GITHUB_TOKEN)
 
 var Service =
 Seneca(opts.seneca)
