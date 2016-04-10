@@ -1,5 +1,10 @@
-7 April 2016 - 6.1.0
----
+## 10 April - 6.2.0
+
+* Added support for redis to enable hard caching
+* Updated isolated mode to run without redis
+
+## 7 April 2016 - 6.1.0
+
 * Added CHANGELOG.md
 * Removed redundant data folder.
 * Removed unneeded build.sh.
@@ -9,6 +14,6 @@
 * Added isolation mode
 * Updated docs to reflect changes
 
-6 April 2016 - 6.0.0
----
+## 6 April 2016 - 6.0.0
+
 * First release of the 6th major revision of nodezoo.
