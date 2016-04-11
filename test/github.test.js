@@ -24,7 +24,7 @@ describe('nodezoo-github', function () {
   it('Fired the get pattern', function (done) {
     var seneca = Seneca({ log: 'silent' })
     seneca.use('entity')
-    seneca.use(Github, { token: 'f40c9022ceb84264231cd5fb73314a55621427e3' })
+    seneca.use(Github, { token: /*GITHUB TOKEN GOES HERE*/})
 
 
     seneca.ready(function () {
