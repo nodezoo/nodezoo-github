@@ -27,19 +27,21 @@ var opts = {
     port: envs.GITHUB_PORT || '8052'
   },
   redis: {
-    host: 'localhost',
-    port: envs.redis_PORT || '6379'
+    host: envs.GITHUB_REDIS_HOST || 'localhost',
+    port: envs.GITHUB_REDIS_PORT || '6379'
   }
 }
 
-console.log(envs.GITHUB_TOKEN)
+var Service = Seneca(opts.seneca)
 
-var Service =
-Seneca(opts.seneca)
-  .use(Entities)
-  .use(RedisStore, opts.redis)
-  .use(Github, opts.github)
+Service.use(Entities)
 
-envs.GITHUB_ISOLATED
-  ? Service.listen(opts.isolated)
-  : Service.use(Mesh, opts.mesh)
+if (envs.GITHUB_ISOLATED) {
+  Service.listen(opts.isolated)
+}
+else {
+  Service.use(Mesh, opts.mesh)
+  Service.use(RedisStore, opts.redis)
+}
+
+Service.use(Github, opts.github)
