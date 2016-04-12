@@ -6,7 +6,7 @@
     "start": "node srv/start.js",
     "isolated": "GITHUB_ISOLATED=true node srv/start.js",
     "lint": "lab -P test -dL",
-    "test": "lab -t 84 -v -P test",
+    "test": "lab -m 5000 -t 75 -v -P test",
     "cov": "lab -s -P test -r lcov | coveralls"
   },
   "main": "lib/github.js",
