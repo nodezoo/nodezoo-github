@@ -1,3 +1,7 @@
+##Pending - x.x.x
+
+* toolbag removed.
+
 ## 10 April - 6.2.0
 
 * Added support for redis to enable hard caching
