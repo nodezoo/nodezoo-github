@@ -112,6 +112,20 @@ Contains the response of an earlier call to `role:info,req:part`.
 seneca.add('role:info,res:part', (msg, done) => {})
 ```
 
+## Data Emitted
+- name - Name of the module
+- user - The User or Organisation that owns the repository
+- repo - The repository name
+- stars - Number of stars
+- forks - Number of forks
+- watches - Numbers of watchers
+- last - The last commit to the repository
+- urlRepo - A link to the repository
+- urlClone - A clone URL
+- urlSsh - An SSH URL
+- pullRequests - Open pull requests
+- cached - The time the data was last cached at
+
 ## Contributing
 The [NodeZoo org][] encourages __open__ and __safe__ participation.
 
