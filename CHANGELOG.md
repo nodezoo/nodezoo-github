@@ -1,6 +1,8 @@
 ##Pending - x.x.x
 
 * toolbag removed.
+* Checking that github url exists before trying to extract user and repo
+* Stars, forks and watches are now assigned 0 instead of an empty string if repo.* is empty
 
 ## 10 April - 6.2.0
 
