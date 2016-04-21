@@ -6,7 +6,7 @@
     "start": "node srv/start.js",
     "isolated": "GITHUB_ISOLATED=true node srv/start.js",
     "lint": "lab -P test -dL",
-    "test": "lab -m 5000 -t 75 -v -P test",
+    "test": "lab -v -P test -L -c -t 64",
     "cov": "lab -s -P test -r lcov | coveralls"
   },
   "main": "lib/github.js",
@@ -35,6 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "github4": "0.5.4",
+    "proxyquire": "1.7.4",
     "request": "2.70.0",
     "seneca": "2.0.0",
     "seneca-balance-client": "0.4.0",
