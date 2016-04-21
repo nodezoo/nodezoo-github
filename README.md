@@ -83,6 +83,25 @@ all available variable names.
   - Change the registry used to validate the module name.
   - Defaults to `http://registry.npmjs.org/`.
 
+  ## Sample Data
+  ```json
+  {
+  "entity$": "-\/-\/github_cache",
+  "name": "fuge",
+  "user": "apparatus",
+  "repo": "fuge",
+  "stars": 155,
+  "watches": 15,
+  "forks": 18,
+  "last": "2016-04-09T21:57:45Z",
+  "urlRepo": "https:\/\/github.com\/apparatus\/fuge",
+  "urlClone": "git+https:\/\/github.com\/apparatus\/fuge.git",
+  "urlSsh": "git@github.com:apparatus\/fuge.git",
+  "pullRequests": 1,
+  "cached": 1461229347738
+}
+  ```
+  
 ## Messages Handled
 This micro-service handles the following messages.
 
