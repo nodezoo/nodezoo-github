@@ -46,7 +46,7 @@ describe('A valid "role:github,cmd:get" call', () => {
     var seneca = createInstance(done)
     var payload = {name: 'seneca'}
 
-    seneca.act(`role:github,cmd:get`, payload, (err, reply) => {
+    seneca.act('role:github,cmd:get', payload, (err, reply) => {
       expect(err).to.not.exist()
       expect(reply).to.exist()
       done()
@@ -57,12 +57,12 @@ describe('A valid "role:github,cmd:get" call', () => {
     var seneca = createInstance(done)
     var payload = {name: 'seneca'}
 
-    seneca.act(`role:github,cmd:get`, payload, (err, reply) => {
+    seneca.act('role:github,cmd:get', payload, (err, reply) => {
       expect(err).to.not.exist()
 
       var cachedOne = reply.cached
 
-      seneca.act(`role:github,cmd:get`, payload, (err, reply) => {
+      seneca.act('role:github,cmd:get', payload, (err, reply) => {
         expect(err).to.not.exist()
 
         var cachedTwo = reply.cached
@@ -77,13 +77,13 @@ describe('A valid "role:github,cmd:get" call', () => {
     var seneca = createInstance(done)
     var payload = {name: 'seneca'}
 
-    seneca.act(`role:github,cmd:get`, payload, (err, reply) => {
+    seneca.act('role:github,cmd:get', payload, (err, reply) => {
       expect(err).to.not.exist()
 
       var cachedOne = reply.cached
       payload.update = true
 
-      seneca.act(`role:github,cmd:get`, payload, (err, reply) => {
+      seneca.act('role:github,cmd:get', payload, (err, reply) => {
         expect(err).to.not.exist()
 
         var cachedTwo = reply.cached
@@ -100,7 +100,7 @@ describe('An invalid "role:github,cmd:get" call', () => {
     var seneca = createInstance(done)
     var payload = {name: 'shooobydoobydooboop'}
 
-    seneca.act(`role:github,cmd:get`, payload, (err, reply) => {
+    seneca.act('role:github,cmd:get', payload, (err, reply) => {
       expect(err).to.exist()
       expect(reply).to.not.exist()
       done()
@@ -113,7 +113,7 @@ describe('A valid "role:info,req:part" call', () => {
     var seneca = createInstance(done)
     var payload = {name: 'seneca'}
 
-    seneca.act(`role:info,req:part`, payload, (err, reply) => {
+    seneca.act('role:info,req:part', payload, (err, reply) => {
       expect(err).to.not.exist()
       expect(reply).to.exist()
       done()
@@ -124,13 +124,13 @@ describe('A valid "role:info,req:part" call', () => {
     var seneca = createInstance(done)
     var payload = {name: 'seneca'}
 
-    seneca.add(`role:info,res:part`, (msg, cb) => {
+    seneca.add('role:info,res:part', (msg, cb) => {
       expect(msg).to.exist()
       cb()
       done()
     })
 
-    seneca.act(`role:info,req:part`, payload, (err, reply) => {
+    seneca.act('role:info,req:part', payload, (err, reply) => {
       expect(err).to.not.exist()
       expect(reply).to.exist()
     })
