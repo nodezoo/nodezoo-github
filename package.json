@@ -34,6 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "async": "^2.0.0-rc.4",
     "github4": "1.0.0",
     "request": "2.72.0",
     "seneca": "2.0.1",
