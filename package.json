@@ -1,6 +1,6 @@
 {
   "name": "nodezoo-github",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "description": "A micro-service that provides Github related information to NodeZoo",
   "scripts": {
     "start": "node srv/start.js",
@@ -37,7 +37,7 @@
     "github4": "1.0.0",
     "request": "2.72.0",
     "seneca": "2.0.1",
-    "seneca-balance-client": "0.4.0",
+    "seneca-balance-client": "0.5.x",
     "seneca-entity": "0.0.1",
     "seneca-level-store": "0.2.3",
     "seneca-mesh": "0.7.0",
