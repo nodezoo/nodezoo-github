@@ -80,13 +80,13 @@ describe('A valid "role:github,cmd:get" call', () => {
     seneca.act('role:github,cmd:get', payload, (err, reply) => {
       expect(err).to.not.exist()
 
-      var cachedOne = reply.cached
+      var cachedOne = reply.data.cached
       payload.update = true
 
       seneca.act('role:github,cmd:get', payload, (err, reply) => {
         expect(err).to.not.exist()
 
-        var cachedTwo = reply.cached
+        var cachedTwo = reply.data.cached
 
         expect(cachedOne).to.be.below(cachedTwo)
         done()
