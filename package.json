@@ -1,6 +1,6 @@
 {
   "name": "nodezoo-github",
-  "version": "6.2.2",
+  "version": "6.3.0",
   "description": "A micro-service that provides Github related information to NodeZoo",
   "scripts": {
     "start": "node srv/start.js",
