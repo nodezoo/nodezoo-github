@@ -16,6 +16,14 @@
     "github",
     "microservice"
   ],
+  "files": [
+    "README.md",
+    "package.json",
+    "LICENSE",
+    "Dockerfile",
+    "lib",
+    "srv"
+  ],
   "author": "Richard Rodger (github.com/rjrodger)",
   "contributors": [
     "Jane Quinn (github.com/CodeWriterWriter)",
