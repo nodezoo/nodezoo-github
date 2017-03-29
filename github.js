@@ -1,23 +1,19 @@
-/* Copyright (c) 2014-2015 Richard Rodger, MIT License */
-/* jshint node:true, asi:true, eqnull:true */
-"use strict";
+/* Copyright (c) 2014-2017 Richard Rodger and other contributors, MIT License */
 
 
-var GitHubAPI = require('github')
-
-var gitapi  = new GitHubAPI({
-  version: "3.0.0"
-})
+var Github = require('github')
 
 
 
-module.exports = function github( options ){
+module.exports = function github ( options ){
   var seneca = this
 
   options = seneca.util.deepextend({
     token: 'GITHUB_TOKEN'
   },options)
 
+
+  var gitapi  = new Github()
 
 
   seneca.add( 'role:github,cmd:get', cmd_get )
@@ -48,7 +44,7 @@ module.exports = function github( options ){
 
             seneca.act(
               'role:github,cmd:query',
-              {name:github_name,user:out.user,repo:out.repo},
+              {name:github_name,owner:out.owner,repo:out.repo},
               done)
           })
       }
@@ -62,27 +58,32 @@ module.exports = function github( options ){
     var github_ent  = seneca.make$('github')
 
     var github_name = args.name
-    var user        = args.user
+    var owner        = args.owner
     var repo        = args.repo
 
+
+/*
     gitapi.authenticate({
       type:     "basic",
       username: options.token,
       password: 'x-oauth-basic'
     })
+*/
 
     gitapi.repos.get(
       {
-        user: user,
+        owner: owner,
         repo: repo
       },
-      function(err,repo){
+      function (err, out) {
         if( err ) return done(err);
+
+        var repo = out.data
 
         var data
         if( repo ) {
           data = {
-            user:    args.user,
+            owner:   args.owner,
             repo:    args.repo,
             stars:   repo.stargazers_count,
             watches: repo.subscribers_count,
@@ -114,7 +115,7 @@ module.exports = function github( options ){
 
     var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
     if( m ) {
-      return done( null, { user:m[1], repo:m[2] })
+      return done( null, { owner:m[1], repo:m[2] })
     }
     else return done();
   }
