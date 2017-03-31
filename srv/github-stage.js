@@ -6,6 +6,7 @@ var Seneca = require('seneca')
 Seneca({tag: 'github'})
   .listen(PORT)
 
+  .use('redis-transport')
   .use('entity')
   .use('jsonfile-store', {folder: __dirname+'/../data'})
 
@@ -49,7 +50,9 @@ Seneca({tag: 'github'})
       })
   })
 
-  .client({pin:'role:info', host:'info', port:PORT})
+  .listen({pin:'role:info,need:part', type:'redis', host:'redis'})
+  .client({pin:'role:info,collect:part', type:'redis', host:'redis'})
+
   .client({pin:'role:npm', host:'npm', port:PORT})
 
 
