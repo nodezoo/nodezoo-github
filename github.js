@@ -18,107 +18,70 @@ module.exports = function github ( options ){
 
   seneca.add( 'role:github,cmd:get', cmd_get )
   seneca.add( 'role:github,cmd:query', cmd_query )
-  seneca.add( 'role:github,cmd:parse', cmd_parse )
 
 
+  function cmd_get( msg, reply ) {
+    this
+      .make$('github')
+      .load$( msg.name, function (err, mod) {
+        if( err ) return reply(err)
 
-  function cmd_get( args, done ) {
-    var seneca      = this
-    var github_ent  = seneca.make$('github')
+        if( mod ) {
+          return reply(mod)
+        }
 
-    var github_name = args.name
+        var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(msg.giturl)
+        if (!m) return reply()
 
-    github_ent.load$( github_name, function(err,github_mod){
-      if( err ) return done(err);
 
-      if( github_mod ) {
-        return done(null,github_mod);
-      }
-      else if( args.giturl ) {
-        seneca.act(
-          'role:github,cmd:parse',
-          {name:github_name,giturl:args.giturl},
-
-          function(err,out){
-            if( err ) return done(err);
-
-            seneca.act(
-              'role:github,cmd:query',
-              {name:github_name,owner:out.owner,repo:out.repo},
-              done)
-          })
-      }
-      else return done();
-    })
+        this.act(
+          {
+            role: 'github',
+            cmd: 'query',
+            name: msg.name,
+            owner: m[1],
+            repo: m[2]
+          },
+          reply)
+      })
   }
 
 
-  function cmd_query( args, done ) {
+  function cmd_query( msg, reply ) {
     var seneca      = this
-    var github_ent  = seneca.make$('github')
-
-    var github_name = args.name
-    var owner        = args.owner
-    var repo        = args.repo
-
-
-/*
-    gitapi.authenticate({
-      type:     "basic",
-      username: options.token,
-      password: 'x-oauth-basic'
-    })
-*/
 
     gitapi.repos.get(
-      {
-        owner: owner,
-        repo: repo
-      },
+      { owner: msg.owner, repo: msg.repo },
       function (err, out) {
-        if( err ) return done(err);
+        if (err) return reply(err)
 
-        var repo = out.data
+        var data = {
+          owner:   msg.owner,
+          repo:    msg.repo,
+          stars:   out.data.stargazers_count,
+          watches: out.data.subscribers_count,
+          forks:   out.data.forks_count,
+          last:    out.data.pushed_at
+        }
 
-        var data
-        if( repo ) {
-          data = {
-            owner:   args.owner,
-            repo:    args.repo,
-            stars:   repo.stargazers_count,
-            watches: repo.subscribers_count,
-            forks:   repo.forks_count,
-            last:    repo.pushed_at
-          }
+        seneca
+          .make$('github')
+          .load$(msg.name, function (err, mod) {
+            if (err) return reply(err)
 
-          github_ent.load$(github_name, function(err,github_mod){
-            if( err ) return done(err);
-
-            if( github_mod ) {
-              return github_mod.data$(data).save$(done);
+            if (mod) {
+              return mod
+                .data$(data)
+                .save$(reply)
             }
             else {
-              data.id$ = github_name
-              github_ent.make$(data).save$(done);
+              data.id$ = msg.name
+              seneca
+                .make$('github')
+                .data$(data)
+                .save$(reply)
             }
           })
-        }
-        else return done()
-
-      }
-    )
+      })
   }
-
-
-  function cmd_parse( args, done ) {
-    var seneca  = this
-
-    var m = /[\/:]([^\/:]+?)[\/:]([^\/]+?)(\.git)*$/.exec(args.giturl)
-    if( m ) {
-      return done( null, { owner:m[1], repo:m[2] })
-    }
-    else return done();
-  }
-
-
 }
