@@ -26,13 +26,13 @@
   "dependencies": {
     "github": "9.2.0",
     "seneca": "../seneca",
-    "seneca-balance-client": "../seneca-balance-client",
+    "seneca-balance-client": "0.6.1",
     "seneca-monitor": "../seneca-monitor",
-    "seneca-mesh": "../seneca-mesh",
-    "seneca-entity": "2.0.0",
+    "seneca-mesh": "0.10.0",
+    "seneca-entity": "2.0.2",
     "seneca-jsonfile-store": "1.0.0",
     "seneca-redis-transport": "0.3.0",
-    "seneca-repl": "1.0.0"
+    "seneca-repl": "1.1.2"
   },
   "devDependencies": {
     "code": "4.0.0",

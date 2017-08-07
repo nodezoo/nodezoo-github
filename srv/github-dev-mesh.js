@@ -4,13 +4,12 @@ var Seneca = require('seneca')
 
 Seneca({tag: 'github'})
   .test()
+  .use('monitor')
 
   .use('entity')
   .use('jsonfile-store', {folder: __dirname+'/../data'})
 
   .use('../github.js')
-
-  .use('monitor')
 
   .use('mesh', {
     listen: [
