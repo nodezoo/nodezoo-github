@@ -1,0 +1,9 @@
+
+FROM nodezoo-github:1
+
+CMD ["node", "/app/srv/github-prod.js"]
+
+
+
+
+

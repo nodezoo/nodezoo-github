@@ -37,3 +37,6 @@ MANIFEST-*
 srv/data*
 
 .ignore*
+
+
+docker/stage/app

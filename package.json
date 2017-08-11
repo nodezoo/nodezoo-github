@@ -1,0 +1,41 @@
+{
+  "name": "nodezoo-github",
+  "version": "1.0.0",
+  "description": "nodezoo-github",
+  "main": "github.js",
+  "keywords": [
+    "nodezoo",
+    "seneca",
+    "github",
+    "microservice"
+  ],
+  "scripts": {
+    "test": "lab -P test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodezoo/nodezoo-github.git"
+  },
+  "author": "Richard Rodger (http://richardrodger.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodezoo/nodezoo-github/issues"
+  },
+  "homepage": "https://github.com/nodezoo/nodezoo-github",
+
+  "dependencies": {
+    "github": "9.2.0",
+    "seneca": "3.4.2",
+    "seneca-balance-client": "0.6.1",
+    "seneca-monitor": "0.1.0",
+    "seneca-mesh": "0.11.0",
+    "seneca-entity": "2.0.2",
+    "seneca-jsonfile-store": "1.0.0",
+    "seneca-redis-transport": "0.3.0",
+    "seneca-repl": "1.1.2"
+  },
+  "devDependencies": {
+    "code": "4.1.x",
+    "lab": "14.0.x"
+  }
+}
