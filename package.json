@@ -1,6 +1,6 @@
 {
   "name": "nodezoo-github",
-  "version": "1.0.0-tms-dev",
+  "version": "1.0.0",
   "description": "nodezoo-github",
   "main": "github.js",
   "keywords": [
@@ -25,17 +25,17 @@
 
   "dependencies": {
     "github": "9.2.0",
-    "seneca": "../seneca",
+    "seneca": "3.4.2",
     "seneca-balance-client": "0.6.1",
-    "seneca-monitor": "../seneca-monitor",
-    "seneca-mesh": "0.10.0",
+    "seneca-monitor": "0.1.0",
+    "seneca-mesh": "0.11.0",
     "seneca-entity": "2.0.2",
     "seneca-jsonfile-store": "1.0.0",
     "seneca-redis-transport": "0.3.0",
     "seneca-repl": "1.1.2"
   },
   "devDependencies": {
-    "code": "4.0.0",
-    "lab": "13.0.1"
+    "code": "4.1.x",
+    "lab": "14.0.x"
   }
 }
