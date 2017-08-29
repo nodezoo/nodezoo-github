@@ -3,7 +3,7 @@
 var PORT = process.env.PORT || 9000
 var Seneca = require('seneca')
 
-Seneca({tag: 'github'})
+Seneca({tag: 'github', legacy: {meta: true}})
   .listen(PORT)
 
   .use('redis-transport')
@@ -50,8 +50,8 @@ Seneca({tag: 'github'})
       })
   })
 
-  .listen({pin:'role:info,need:part', type:'redis', host:'redis'})
-  .client({pin:'role:info,collect:part', type:'redis', host:'redis'})
+  .listen({pin:'role:info,need:part', type:'redis', host:'redis', port:6379})
+  .client({pin:'role:info,collect:part', type:'redis', host:'redis', port:6379})
 
   .client({pin:'role:npm', host:'npm', port:PORT})
 
