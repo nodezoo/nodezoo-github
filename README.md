@@ -1,6 +1,6 @@
 # nodezoo-github
 
-[![Build Status](https://travis-ci.org/nodezoo/nodezoo-suggest.svg?branch=master)](https://travis-ci.org/nodezoo/nodezoo-suggest)
+[![Build Status](https://travis-ci.org/nodezoo/nodezoo-github.svg?branch=master)](https://travis-ci.org/nodezoo/nodezoo-github)
 
 
 This is a repository in the microservice demonstration system for
