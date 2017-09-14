@@ -29,6 +29,7 @@ describe('npm', function () {
     // Load the github plugin
       .use('..')
 
+    // Subscribe to internal messages in order to count calls
       .sub('role:entity', function (msg) {
         seen[msg.cmd] = 1 + (seen[msg.cmd]||0)
       })
@@ -49,7 +50,6 @@ describe('npm', function () {
         
         expect(seen).to.equal({ load: 2, save: 1 })
       })
-
 
       .act('role:github,cmd:get,name:seneca', function (ignore, out) {
         expect(out.owner).equal('senecajs')
