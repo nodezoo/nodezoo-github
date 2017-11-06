@@ -22,7 +22,6 @@
     "url": "https://github.com/nodezoo/nodezoo-github/issues"
   },
   "homepage": "https://github.com/nodezoo/nodezoo-github",
-
   "dependencies": {
     "github": "9.2.0",
     "seneca": "3.4.2",
